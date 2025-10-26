@@ -2,6 +2,10 @@
 
 Türkiye deprem verilerini gerçek zamanlı olarak izleyebileceğiniz web uygulaması. AFAD API'sinden saatlik olarak deprem verileri çekilerek MongoDB'de saklanır ve harita üzerinde görselleştirilir.
 
+**Live App:** https://sarsinti-frontend.vercel.app/
+
+**Backend API:** https://sarsinti-api.onrender.com
+
 ## Özellikler
 
 - Türkiye geneli deprem haritası
