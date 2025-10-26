@@ -1,0 +1,57 @@
+# Render Blueprint
+# https://render.com/docs/blueprint-spec
+
+services:
+  # Backend API
+  - type: web
+    name: sarsinti-api
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: MONGODB_URI
+        sync: false
+      - key: AFAD_API_URL
+        value: https://deprem.afad.gov.tr/apiv2/event/filter
+      - key: AFAD_API_TIMEOUT
+        value: 30000
+      - key: ETL_BATCH_SIZE
+        value: 1000
+      - key: ETL_START_DATE
+        value: 1960-01-01
+      - key: ETL_INTERVAL_MINUTES
+        value: 60
+      - key: ADMIN_SECRET
+        sync: false
+      - key: CORS_ORIGIN
+        value: "*"
+    healthCheckPath: /health
+
+  # ETL Cron Job
+  - type: cron
+    name: sarsinti-etl
+    env: node
+    region: frankfurt
+    plan: free
+    schedule: "0 * * * *"
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm run etl
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: AFAD_API_URL
+        value: https://deprem.afad.gov.tr/apiv2/event/filter
+      - key: AFAD_API_TIMEOUT
+        value: 30000
+      - key: ETL_BATCH_SIZE
+        value: 1000
+      - key: ETL_START_DATE
+        value: 1960-01-01

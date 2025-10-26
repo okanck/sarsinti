@@ -1,0 +1,19 @@
+{
+  "name": "sarsinti",
+  "version": "1.0.0",
+  "description": "Deprem Haritası - AFAD Deprem Verileri API ve ETL Sistemi",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend",
+    "shared"
+  ],
+  "scripts": {
+    "backend": "npm run dev --workspace=backend",
+    "frontend": "npm run dev --workspace=frontend",
+    "etl": "npm run etl --workspace=backend"
+  },
+  "keywords": ["earthquake", "afad", "etl", "mongodb", "express"],
+  "author": "okan.civelek@rdc.com.tr",
+  "license": "MIT"
+}
